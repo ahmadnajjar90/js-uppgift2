@@ -122,7 +122,46 @@ User.send();
 
 
 
+/*Notifications */
+let Notifications = new XMLHttpRequest()   
+Notifications.onload = function(){
+    if(this.readyState == 4 && this.status == 200){
+        var Notifications = JSON.parse(this.response);
+        $("#n1").text(Notifications[0].title);
+        $("#n11").text(Notifications[0].subtitle);
+        $("#n2").text(Notifications[1].title);
+        $("#n22").text(Notifications[1].subtitle);
+        $("#n3").text(Notifications[2].title);
+        $("#n33").text(Notifications[2].subtitle);
+        
 
+    }
+}
+Notifications.open("GET" ,"https://inlupp-fa.azurewebsites.net/api/notifications", true);
+Notifications.send();
+
+
+
+
+
+
+/*Messages */
+let Messages = new XMLHttpRequest()   
+Messages.onload = function(){
+    if(this.readyState == 4 && this.status == 200){
+        var Messages = JSON.parse(this.response);
+        $("#m1").text(Messages[0].from);
+        $("#m11").text(Messages[0].title);
+        $("#m2").text(Messages[1].from);
+        $("#m22").text(Messages[1].title);
+        $("#m3").text(Messages[2].from);
+        $("#m33").text(Messages[2].title);
+        
+       
+    }
+}
+Messages.open("GET" ,"https://inlupp-fa.azurewebsites.net/api/messages", true);
+Messages.send();
 
 
 
