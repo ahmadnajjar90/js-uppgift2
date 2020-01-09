@@ -2,11 +2,20 @@
   'use strict';
   $(function() {
     if ($("#total-sales-chart").length) {
+
+      /*Import totalsales */
+    let Totalsales = new XMLHttpRequest()   
+    Totalsales.onload = function(){
+    if(this.readyState == 4 && this.status == 200){
+        var Totalsales = JSON.parse(this.response);
+        
+
       var areaData = {
-        labels: ["Mon","","Tue","", "Wed","", "Thu","", "Fri","", "Sat"],
+        labels:  Totalsales.labels,
         datasets: [
           {
-            data: [260000, 200000, 290000, 230000, 200000, 180000, 180000, 360000, 240000, 280000, 180000],
+
+            data: Totalsales.datasets[0]["data"],
             backgroundColor: [
               'rgba(61, 165, 244, .0)'
             ],
@@ -18,7 +27,7 @@
             label: "services"
           },
           {
-            data: [160000, 120000, 175000, 290000, 380000, 210000, 320000, 150000, 310000, 180000, 160000],
+            data:  Totalsales.datasets[1]["data"],
             backgroundColor: [
               'rgba(241, 83, 110, .0)'
             ],
@@ -109,12 +118,25 @@
         options: areaOptions
       });
     }
+    
+  }
+
+Totalsales.open("GET" ,"https://inlupp-fa.azurewebsites.net/api/total-sales-chart", true);
+Totalsales.send();
+}
 
     if ($("#users-chart").length) {
+      /*Import user chart Data Set and Labels */
+
+      let usercharts = new XMLHttpRequest()
+      usercharts.onload = function(){
+      if(this.readyState == 4 && this.status == 200){
+          var User_obj = JSON.parse(this.response)
+           //console.log(User_obj);
       var areaData = {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
+        labels: User_obj.dataset["labels"],
         datasets: [{
-            data: [160, 105, 225, 140, 180, 61, 120, 60, 90],
+            data: User_obj.dataset["data"],
             backgroundColor: [
               '#e0fff4'
             ],
@@ -183,7 +205,10 @@
         options: areaOptions
       });
     }
-
+  }
+    usercharts.open("GET" , "https://inlupp-fa.azurewebsites.net/api/total-users", true);
+    usercharts.send();
+  }   
     if ($("#users-chart-dark").length) {
       var areaData = {
         labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
@@ -259,10 +284,20 @@
     }
 
     if ($("#projects-chart").length) {
+
+      /*Import projects chart Data Set and Labels */
+
+      let projectschart = new XMLHttpRequest()
+      projectschart.onload = function(){
+      if(this.readyState == 4 && this.status == 200){
+      var project_obj = JSON.parse(this.response)
+
+     
+
       var areaData = {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr","May"],
+        labels: project_obj.dataset["labels"],
         datasets: [{
-            data: [220, 120, 140, 135, 160, 65, 160, 135, 190,165, 120, 160, 140, 140, 130, 120,  150],
+            data: project_obj.dataset["data"],
             backgroundColor: [
               '#e5f2ff'
             ],
@@ -330,9 +365,28 @@
         data: areaData,
         options: areaOptions
       });
+      
     }
+  }
+  
+  projectschart.open("GET","https://inlupp-fa.azurewebsites.net/api/total-projects", true);
+  projectschart.send();
+}
+
+  
+  
 
     if ($('#offlineProgress').length) {
+      /*Downloads chart */
+      let Downloadschart = new XMLHttpRequest()   
+      Downloadschart.onload = function(){
+          if(this.readyState == 4 && this.status == 200){
+              var download_obj = JSON.parse(this.response);
+        
+
+
+
+
       var bar = new ProgressBar.Circle(offlineProgress, {
         color: '#000',
         // This has to be the same size as the maximum width to
@@ -377,10 +431,24 @@
       });
   
       bar.text.style.fontSize = '1rem';
-      bar.animate(.65); // Number from 0.0 to 1.0
+      bar.animate(download_obj[0].circleValue); // Number from 0.0 to 1.0
     }
+  }
+  
+Downloadschart.open("GET" ,"https://inlupp-fa.azurewebsites.net/api/downloads", true);
+Downloadschart.send();
+}
+    
 
     if ($('#onlineProgress').length) {
+
+      /*Downloads chart */
+      let Downloadschart = new XMLHttpRequest()   
+      Downloadschart.onload = function(){
+          if(this.readyState == 4 && this.status == 200){
+              var download_obj = JSON.parse(this.response);
+        
+
       var bar = new ProgressBar.Circle(onlineProgress, {
         color: '#000',
         // This has to be the same size as the maximum width to
@@ -425,8 +493,13 @@
       });
   
       bar.text.style.fontSize = '1rem';
-      bar.animate(.25); // Number from 0.0 to 1.0
+      bar.animate(download_obj[1].circleValue); // Number from 0.0 to 1.0
     }
+  }
+  
+Downloadschart.open("GET" ,"https://inlupp-fa.azurewebsites.net/api/downloads", true);
+Downloadschart.send();
+}
 
     if ($('#offlineProgressDark').length) {
       var bar = new ProgressBar.Circle(offlineProgressDark, {
@@ -475,6 +548,10 @@
       bar.text.style.fontSize = '1rem';
       bar.animate(.64); // Number from 0.0 to 1.0
     }
+  
+
+
+
 
     if ($('#onlineProgressDark').length) {
       var bar = new ProgressBar.Circle(onlineProgressDark, {

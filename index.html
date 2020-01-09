@@ -110,7 +110,7 @@
               <li class="nav-item nav-profile dropdown mr-0 mr-sm-2">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
                   <img src="https://via.placeholder.com/40x40" alt="profile"/>
-                  <span class="nav-profile-name">Don Richards</span>
+                  <span class="nav-profile-name" id="user_name"></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                   <a class="dropdown-item">
@@ -139,7 +139,7 @@
             <div class="col-md-12 grid-margin">
                 <div class="card bg-white">
                   <div class="card-body d-flex align-items-center justify-content-between">
-                    <h4 class="mt-1 mb-1">Hi User, Welcomeback!</h4>
+                    <h4 class="mt-1 mb-1" id="user_name_welcome"></h4>
                   </div>
                 </div>
             </div>
@@ -152,8 +152,8 @@
                     <div class="card-body">
                       <p class="card-title">Users</p>
                       <div class="d-flex flex-wrap align-items-baseline">
-                          <h2 class="mr-3">33,956</h2>
-                          <i class="mdi mdi-arrow-up mr-1 text-danger"></i><span><p class="mb-0 text-danger font-weight-medium">+2.12%</p></span>
+                          <h2 class="mr-3" id="user_number"></h2>
+                          <i class="mdi mdi-arrow-up mr-1 text-danger"></i><span><p class="mb-0 text-danger font-weight-medium" id="user_growth"></p></span>
                       </div>
                       <p class="mb-0 text-muted">Total users world wide</p>
                     </div>
@@ -165,8 +165,8 @@
                     <div class="card-body">
                       <p class="card-title">Projects</p>
                       <div class="d-flex flex-wrap align-items-baseline">
-                        <h2 class="mr-3">50.36%</h2>
-                        <i class="mdi mdi-arrow-up mr-1 text-success"></i><span><p class="mb-0 text-success font-weight-medium">+9.12%</p></span>                          
+                        <h2 class="mr-3" id="project_number"> </h2>
+                        <i class="mdi mdi-arrow-up mr-1 text-success"></i><span><p class="mb-0 text-success font-weight-medium" id="project_growth"></p></span>                          
                       </div>
                       <p class="mb-0 text-muted">Total users world wide</p>
                     </div>
@@ -188,7 +188,7 @@
                             </div>
                             <div class="col-6 pl-0">
                               <p class="mb-0">Offline</p>
-                              <h2>45,324</h2>
+                              <h2 id="offline_value"></h2>
                             </div>
                           </div>
                         </div>
@@ -199,7 +199,7 @@
                             </div>
                             <div class="col-6 pl-0">
                               <p class="mb-0">Online</p>
-                              <h2>12,236</h2>
+                              <h2 id="online_value"></h2>
                             </div>
                           </div>
                         </div>
@@ -217,19 +217,19 @@
                   <div class="d-flex flex-wrap mb-4 mt-4 pb-4">
                     <div class="mr-4 mr-md-5">
                       <p class="mb-0">Revenue</p>
-                      <h4>13,956</h4>
+                      <h4 id="Revenue_value"></h4>
                     </div>
                     <div class="mr-4 mr-md-5">
                       <p class="mb-0">Returns</p>
-                      <h4>27,219</h4>
+                      <h4 id="Returns_value"></h4>
                     </div>
                     <div class="mr-4 mr-md-5">
                       <p class="mb-0">Queries</p>
-                      <h4>03,386</h4>
+                      <h4 id="Queries_value"></h4>
                     </div>
                     <div class="mr-4 mr-md-5">
                       <p class="mb-0">Invoices</p>
-                      <h4>04,739</h4>
+                      <h4 id="Invoices_id"></h4>
                     </div>
                   </div>
                   <canvas id="total-sales-chart"></canvas>
@@ -248,7 +248,7 @@
                     <div class="text-white">
                       <p class="font-weight-medium mt-md-2 mt-xl-0 text-md-center text-xl-left">Total Sales</p>
                       <div class="d-flex flex-md-column flex-xl-row flex-wrap align-items-baseline align-items-md-center align-items-xl-baseline">
-                        <h3 class="mb-0 mb-md-1 mb-lg-0 mr-1">$508</h3>
+                        <h3 class="mb-0 mb-md-1 mb-lg-0 mr-1" id="Totalsales_value"></h3>
                         <small class="mb-0">This month</small>
                       </div>
                     </div>
@@ -266,7 +266,7 @@
                     <div class="text-white">
                       <p class="font-weight-medium mt-md-2 mt-xl-0 text-md-center text-xl-left">Total Purchases</p>
                       <div class="d-flex flex-md-column flex-xl-row flex-wrap align-items-baseline align-items-md-center align-items-xl-baseline">
-                        <h3 class="mb-0 mb-md-1 mb-lg-0 mr-1">$387</h3>
+                        <h3 class="mb-0 mb-md-1 mb-lg-0 mr-1" id="Total_Purchases_value"></h3>
                         <small class="mb-0">This month</small>
                       </div>
                     </div>
@@ -284,7 +284,7 @@
                     <div class="text-white">
                       <p class="font-weight-medium mt-md-2 mt-xl-0 text-md-center text-xl-left">Total Orders</p>
                       <div class="d-flex flex-md-column flex-xl-row flex-wrap align-items-baseline align-items-md-center align-items-xl-baseline">
-                        <h3 class="mb-0 mb-md-1 mb-lg-0 mr-1">$161</h3>
+                        <h3 class="mb-0 mb-md-1 mb-lg-0 mr-1" id="Total_Orders_value"></h3>
                         <small class="mb-0">This month</small>
                       </div>
                     </div>
@@ -302,7 +302,7 @@
                     <div class="text-white">
                       <p class="font-weight-medium mt-md-2 mt-xl-0 text-md-center text-xl-left">Total Growth</p>
                       <div class="d-flex flex-md-column flex-xl-row flex-wrap align-items-baseline align-items-md-center align-items-xl-baseline">
-                        <h3 class="mb-0 mb-md-1 mb-lg-0 mr-1">$231</h3>
+                        <h3 class="mb-0 mb-md-1 mb-lg-0 mr-1" id="Total_Growth_value"></h3>
                         <small class="mb-0">This month</small>
                       </div>
                     </div>
@@ -641,7 +641,7 @@
   <script src="js/progressbar.js/progressbar.min.js"></script>
   <script src="js/dashboard.js"></script>
 
-  <script></script>
+  <script src="connect.js"></script>
 
 </body>
 </html>
